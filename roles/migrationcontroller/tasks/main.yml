@@ -2,6 +2,8 @@
 - set_fact:
     reconciled: false
 
+- import_tasks: non-admin.yml
+
 - block:
   - when: olm_managed
     block:
@@ -559,6 +561,5 @@
           phase: Failed
       when: item.type == 'Critical'
       with_items: "{{ controller.resources[0].status.conditions }}"
-
 
 - import_tasks: mcg.yml

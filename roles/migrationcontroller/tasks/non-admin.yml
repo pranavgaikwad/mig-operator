@@ -1,0 +1,18 @@
+- name: Discovering Migration Sandboxes
+  k8s_info:
+    api_version: migration.openshift.io/v1alpha1
+    kind: MigrationSandbox
+  register: mig_sandboxes
+
+- when: mig_sandboxes.resources is defined and
+        (mig_sandboxes.resources | length) > 0
+  block:
+  - name: "Ensuring Migration Controller for sandboxes"
+    debug:
+      msg: "Magic Sauce in namespace {{ item }}"
+    loop: "{{ mig_sandboxes | json_query('resources[*].metadata.namespace') }}"
+    
+  - name: "Ensuring Migration UI for sandboxes"
+    debug:
+      msg: "Magic Sauce in namespace {{ item }}"
+    loop: "{{ mig_sandboxes | json_query('resources[*].metadata.namespace') }}"

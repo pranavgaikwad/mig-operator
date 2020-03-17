@@ -162,6 +162,15 @@ metadata:
         },
         {
             "apiVersion": "migration.openshift.io/v1alpha1",
+            "kind": "MigrationSandbox",
+            "metadata": {
+              "name": "migsandbox",
+              "namespace": "openshift-migration"
+            },
+            "spec": {}
+        },
+        {
+            "apiVersion": "migration.openshift.io/v1alpha1",
             "kind": "MigStorage",
             "metadata": {
               "name": "migstorage",
@@ -737,7 +746,7 @@ spec:
               serviceAccount: migration-operator
               containers:
               - name: ansible
-                image: quay.io/konveyor/mig-operator-container:latest
+                image: quay.io/pranavgaikwad/mig-operator:latest
                 command:
                 - /usr/local/bin/ao-logs
                 - /tmp/ansible-operator/runner
@@ -748,7 +757,7 @@ spec:
                   name: runner
                   readOnly: true
               - name: operator
-                image: quay.io/konveyor/mig-operator-container:latest
+                image: quay.io/pranavgaikwad/mig-operator:latest
                 imagePullPolicy: Always
                 volumeMounts:
                 - mountPath: /tmp/ansible-operator/runner
@@ -873,6 +882,11 @@ spec:
       kind: MigStorage
       displayName: MigStorage
       description: A migration storage location
+    - name: migrationsandboxes.migration.openshift.io
+      version: v1alpha1
+      kind: MigrationSandbox
+      displayName: MigrationSandbox
+      description: A migration sandbox resource
     - name: podvolumebackups.velero.io
       version: v1
       kind: PodVolumeBackup
