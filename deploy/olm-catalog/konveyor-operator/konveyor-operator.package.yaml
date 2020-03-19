@@ -1,4 +1,4 @@
-packageName: konveyor-operator
+packageName: konv-operator
 channels:
 - name: latest
   currentCSV: konveyor-operator.v1.2.0

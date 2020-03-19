@@ -1,5 +1,5 @@
 - name: Discovering Migration Sandboxes
-  k8s_info:
+  k8s_facts:
     api_version: migration.openshift.io/v1alpha1
     kind: MigrationSandbox
   register: mig_sandboxes

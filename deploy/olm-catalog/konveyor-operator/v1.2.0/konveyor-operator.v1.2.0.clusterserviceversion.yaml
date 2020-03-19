@@ -390,6 +390,7 @@ spec:
           - migration.openshift.io
           resources:
           - migclusters
+          - migrationsandboxes
           verbs:
           - '*'
       - serviceAccountName: migration-controller
